@@ -1,166 +1,162 @@
 ---
 name: twitter
 description: >
-  Use this skill when you want to grow a Twitter (X) account through high-quality discovery, carefully timed posts, and optimized tweets (original posts, quotes, or replies), with optional human approval and periodic analytics reporting.
+  User-triggered Twitter (X) engagement: discover content, shortlist candidates, draft, approve, post. Manual invocation only.
 ---
 
-# Twitter Growth Agent
+# Twitter Engagement Skill
 
-Operate a high-quality, low-volume Twitter (X) growth loop: discover → shortlist → draft → (optional) approve → post → (optional) report.
-Bias toward quality over quantity. Never exhaust the timeline.
+Single-run, user-triggered workflow:
+**STARTED → DISCOVERY → SHORTLIST → DRAFT → APPROVAL → POST/ABORT → FINAL REPORT**
 
-## Non-negotiable guardrails (must follow)
+## Defaults
 
-- No DMs.
-- No following/unfollowing.
-- Do not reply to mentions unless explicitly instructed.
-- Never share PII or sensitive info.
-- Never mention or imply being a bot/AI.
-- English-only content and interactions.
-- Never engage the same tweet twice (no second reply, no double-like/RT on same target as part of the loop).
-- Avoid contradicting past posts (best-effort; ask if uncertain).
-- Engagement deduplication is enforced via a persistent engagement log (see `references/engagement-tracking.md`).
-- If not logged into X: warn, pause, and ask the user to confirm once login is complete before continuing.
+| Parameter | Default | Options |
+|-----------|---------|---------|
+| Languages | EN, TR | ES, DE, FR, RU, AR, ZH, JA |
+| Discovery quota | 30 min, 100 target | — |
+| Discovery time cap | 20 min | — |
+| Shortlist size | 3 | — |
+| Heartbeat interval | 30 sec | — |
 
-For details/examples, see: `references/safety-guardrails.md`.
+## Guardrails
 
-## First-class configuration (ask once, then reuse until changed)
+- No DMs
+- No following/unfollowing
+- Do not reply to mentions unless explicitly instructed
+- Never share PII or sensitive info
+- Never mention or imply being a bot/AI
+- Preserve target content language
+- Never engage the same tweet twice (tracked via engagement log)
+- Avoid contradicting past posts
+- If not logged into X: warn, pause, wait for confirmation
 
-Collect (or confirm) these at the start of a run:
+See: `references/safety-guardrails.md`
 
-1) Interests
-- Whitelist: topics/keywords/accounts
-- Blacklist: topics/keywords/accounts to avoid
+## Configuration (ask once, reuse)
 
-2) Style / persona constraints
-- Smart + witty
-- Playful
-- Cheeky / tongue-in-cheek
-- Impish / mischievous / sly, never toxic
-- English-only
+Collect at start:
+1. Interests (whitelist/blacklist topics, accounts)
+2. Style/persona constraints
+3. Optimization target (impressions/engagement/growth)
+4. Approval preference (shortlist + draft, or skip)
 
-3) Optimization target (choose one primary, allow secondary)
-- Impressions
-- Engagement
-- Growth
+Template: `references/config-template.md`
 
-If the user did not provide these, ask for a minimal config using the template in `references/config-template.md`.
+## Supported Actions
 
-## Supported actions / content types
-
-- Reply (default)
+- Reply (default, preferred)
 - Quote tweet
 - Original tweet
 
-Original tweets may:
-- be based on currently discussed topics
-- include links when relevant (prefer link preview if it helps)
-- leverage keywords for discovery
+Bias: replies > quotes > originals (only originals if clearly superior)
 
-## Operating loop (low volume by design)
+---
 
-### Step 0 — Preflight
-- Confirm the user is logged into X.
-- Confirm constraints: no DMs, no follow/unfollow, no mentions-replies unless explicitly requested.
-- Confirm timezone/local posting window preference if provided (otherwise assume user’s local time).
+## Lifecycle States
 
-### Step 1 — Discovery (discovery quality is first-class)
-Spend meaningful time browsing before drafting.
+### STARTED
+- Confirm login state
+- Confirm constraints (no DMs, no follow/unfollow)
+- Load config (or ask if missing)
+- Status: "Run started. Loading config..."
 
-Primary discovery surfaces (user-scoped):
-- Home → For You
-- Home → Following
-- Explore → For You
-- Explore → Trending
-- Explore → News
+### DISCOVERY
+- Browse all 5 surfaces (mandatory coverage):
+  - Home: For You, Following
+  - Explore: For You, Trending, News
+- Quota: minimum items evaluated per defaults
+- Track candidates with: URL, author, language, topic, fit reason, engaged-before marker
+- Status updates during discovery:
+  - "Browsing Home → For You..."
+  - "Found N candidates so far..."
+  - "Switching to Explore → Trending..."
+- Heartbeat: emit "Still working, current step: DISCOVERY" per interval
+- Time cap per defaults, but do not shortlist before coverage requirements met
 
-Rules:
-- Do not scroll endlessly; aim for a representative sample.
-- Prefer recency + relevance + high-signal conversations.
-- Track candidate targets with: URL, author, topic, why it’s a fit, and “do-not-engage-twice” marker.
+See: `references/discovery-sources.md`
 
-See: `references/discovery-sources.md` for what to look for.
+### SHORTLIST
+- Select candidates per shortlist size default
+- Each candidate includes:
+  - Source link
+  - Language
+  - Type (reply/quote/original)
+  - Angle (1 sentence)
+  - Risk check (sensitive? note or skip)
+  - Reason for selection
+- Present to user for selection
+- Status: "Shortlist ready. Presenting candidates..."
+- Wait for user choice (no auto-proceed)
 
-### Step 2 — Shortlist (top 3 candidates) + user checkpoint
-Select top 3 candidate actions. Each candidate must include:
-- Type: reply / quote / original
-- Target (link + author) if reply/quote
-- Core angle (1 sentence)
-- Why it fits interests + style + optimization target
-- Risk check (any sensitive/polarizing angle? if yes, downgrade or skip)
+See: `references/approval-workflow.md`
 
-Send these top 3 to the user for feedback and wait up to 10 minutes.
-- If user chooses/overrides: follow their direction.
-- If no response after 10 minutes: proceed automatically with the best candidate (bias toward action).
-- If user rejects all: ask for a revised direction (new interests/style constraints) or pause.
+### DRAFT
+- Draft tweet for selected candidate
+- Preserve target language
+- Apply optimization heuristics
+- Final safety scan (no PII, no AI disclosure, no violations)
+- Status: "Drafting response..."
 
-Workflow specifics and message templates: `references/approval-workflow.md`.
+See: `references/optimization-heuristics.md`, `references/persona-style-guide.md`
 
-### Step 3 — Draft the final tweet + optimization pass
-Draft the selected tweet. Optimize for:
-- Length (tight, punchy; avoid rambling)
-- Style/persona consistency
-- Keywords for discovery (natural, not spammy)
-- Mentions only if clearly beneficial and safe
-- Engagement probability under current timeline dynamics
+### APPROVAL
+- Present draft to user
+- Wait for: approve / edit / abort
+- No auto-proceed; always wait for explicit user action
+- Status: "Draft ready. Awaiting approval..."
 
-Do a final safety scan:
-- No PII, no sensitive info, no “as an AI…”, no policy violations.
-- Ensure we are not engaging a previously engaged tweet.
+### POST or ABORT
+- If approved: post and record to engagement log
+- If aborted: confirm and end
+- Status: "Posted!" or "Run aborted."
 
-Optimization heuristics: `references/optimization-heuristics.md`.
-Persona guidance: `references/persona-style-guide.md`.
+### FINAL REPORT
+- Emit run summary:
+  - tabs_visited (count)
+  - items_evaluated (count)
+  - shortlisted_items
+  - retry_count (browser recovery attempts)
+  - resync_count (page state re-syncs)
+  - total_duration (seconds)
+- Include link to posted tweet if applicable
+- Status: "Run complete."
 
-### Step 4 — User checkpoint on final draft (10-minute window)
-Send the final draft to the user. Wait up to 10 minutes.
-- If user edits: incorporate edits and re-check guardrails.
-- If no response: proceed automatically.
+---
 
-See: `references/approval-workflow.md`.
+## Browser Recovery
 
-### Step 5 — Post
-Post the tweet/reply/quote.
-After posting, record:
-- timestamp (local)
-- link to the posted tweet
-- what was posted (final text)
-- category/type
-- any notable context (thread/topic)
+When browser stalls or page fails to load:
+1. Wait 2 seconds, check if page loaded
+2. If not: refresh page
+3. If still stuck: close tab, reopen URL
+4. If still stuck: report failure, ask user to intervene
 
-### Step 6 — Stop conditions (avoid “timeline exhaustion”)
-Default: a few posts per day max.
-Stop early if:
-- discovery quality is low (no good candidates)
-- content feels forced
-- the user asks to pause
-- you cannot confirm login state
+After any click/navigation:
+- Verify page state changed (not blind waits)
+- Detect new-tab scenarios (e.g., external link opens Bloomberg)
+- If external site: return to X or notify user
 
-## Timing guidance
-Be timing-aware:
-- Prefer posting when the audience is likely active in the user’s local time.
-- Avoid posting too frequently; leave space for performance + follow-on replies from others.
+Interaction fallback sequence:
+1. DOM click
+2. Simulated mouse click
+3. Keyboard navigation
+4. Direct URL navigation
+5. Page refresh
 
-If the user specifies a schedule, follow it. Otherwise keep volume low and quality high.
+Status updates on retries:
+- "Retrying Explore → News click (attempt 2/3, switching to DOM click)"
 
-## Optional: analytics reporting (periodic)
-If the user enables analytics reporting:
-- Report every 3 hours between 10am and 10pm local time.
-- Reporting can be paused/resumed by explicit instruction.
+---
 
-What to report (keep it lightweight):
-- tweet link
-- impressions/views (if visible)
-- likes, reposts, replies, bookmarks (if visible)
-- quick read: what worked / what to try next (1–3 bullets)
+## Run State Persistence
 
-Operational details: `references/analytics-reporting.md`.
+- Persist current state (lifecycle stage, candidates, selected item)
+- On resume: pick up from last completed state
+- User can issue "discard run" to abandon and start fresh
 
-## How to run this skill via command
-If the environment supports slash commands, it can be invoked with: `/twitter`.
+## Commands
 
-When invoked, first ask for:
-- interests whitelist/blacklist
-- style constraints
-- optimization target
-- whether approvals are required at both checkpoints (default: yes, with 10-minute timeout)
-- whether analytics reporting is enabled (default: off)
+- `/twitter` — Start new run
+- `/twitter resume` — Resume interrupted run
+- `/twitter discard` — Discard current run state

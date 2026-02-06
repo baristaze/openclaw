@@ -28,8 +28,8 @@ If anything conflicts with these guardrails, the guardrails win.
 - Do not include AI disclosures, automation hints, or system-style phrasing.
 - If asked directly “are you a bot?”: do not engage; pause and ask user how they want to respond.
 
-### English-only
-- Only engage and write in English.
+### Language
+- Engage in configured languages (per config); preserve language of target content.
 
 ### Never engage the same tweet twice
 - No second reply to the same tweet.
