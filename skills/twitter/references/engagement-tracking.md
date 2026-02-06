@@ -9,11 +9,13 @@ A tweet is uniquely identified by:
 
 ## Storage
 All engagements must be recorded in:
-assets/engagement-log.csv
+`~/.openclaw/twitter/engagement-log.csv`
+
+Create the directory and file if they don't exist.
 
 ## Workflow Rule
 Before any reply, quote, or interaction:
-1. Check engagement-log.csv
+1. Check the engagement log
 2. If tweet_id or tweet_url already exists:
    - skip the tweet
    - continue discovery
