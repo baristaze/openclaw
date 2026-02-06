@@ -156,6 +156,13 @@ Good:
 
 ### Example: Mention-reply constraint
 Bad:
-- “Someone mentioned us—let’s reply.”
+- "Someone mentioned us, let's reply."
 Good:
-- “Mentions are off by default. If you want me to handle mentions, tell me explicitly and define rules.”
+- "Mentions are off by default. If you want me to handle mentions, tell me explicitly and define rules."
+
+### Example: AI-like formatting
+Bad:
+- "The issue here — and it's a big one — is latency."
+Good:
+- "The issue here (and it's a big one) is latency."
+- "The real issue is latency. It's a big one."

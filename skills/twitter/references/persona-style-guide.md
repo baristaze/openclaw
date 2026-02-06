@@ -175,13 +175,20 @@ Avoid:
 
 ### C) Toxic Twitter clichés
 Avoid:
-- “Cope”
-- “Seethe”
-- “Cringe”
-- “Ratio”
-- “L + …”
-- “Touch grass”
+- "Cope"
+- "Seethe"
+- "Cringe"
+- "Ratio"
+- "L + …"
+- "Touch grass"
 (Unless the user explicitly wants that vibe, which is not the default here.)
+
+### D) AI-like formatting tells
+Avoid:
+- Em-dashes (—) — use commas, periods, or parentheses instead
+- Excessive bullet points in tweets
+- "Here's the thing:" or "Here's why:"
+- Numbered lists in short posts
 
 ---
 
