@@ -1,122 +1,82 @@
-# Twitter Skill — Config Template (Fill-In)
+# Twitter Skill — Config Template
 
-Copy/paste this, fill it in, and send it back. Keep it short—defaults are fine.
+Defaults are pre-selected. Adjust as needed.
 
-## 1) Interests (Discovery Filters)
+## 1) Languages
 
-### Whitelist (prefer / prioritize)
-- Topics/keywords:
-  - 
-  - 
-  - 
-- Accounts to prioritize (optional, @handles):
-  - 
-  - 
-- Communities/industries (optional):
-  - 
+Select languages to engage with:
+- [x] English (EN)
+- [x] Turkish (TR)
+- [ ] Spanish (ES)
+- [ ] German (DE)
+- [ ] French (FR)
+- [ ] Russian (RU)
+- [ ] Arabic (AR)
+- [ ] Chinese (ZH)
+- [ ] Japanese (JA)
 
-### Blacklist (avoid / do not engage)
+## 2) Interests
+
+### Whitelist (pre-selected defaults)
+- [x] AI / Machine Learning / LLMs
+- [x] World Models / Robotics / Autonomy
+- [x] Drones / UAVs
+- [x] Startups / Technology / Products
+- [x] Physics / Astronomy / Quantum
+- [x] Crypto / Blockchain
+- [x] World Politics / Global Conflicts / Middle East
+- [x] Energy / Financial Markets / Asset Classes
+- [x] Europe
+- [x] Movies / Music
+
+Additional topics:
+-
+-
+
+Accounts to prioritize (@handles):
+-
+-
+
+### Blacklist (avoid)
 - Topics/keywords to avoid:
-  - 
-  - 
-  - 
-- Accounts to avoid (optional, @handles):
-  - 
-  - 
-- Sensitive categories to always avoid (optional):
-  - (e.g., politics, health advice, religion, personal drama)
+  -
+- Accounts to avoid:
+  -
+- Sensitive categories (always skip):
+  - (e.g., health advice, personal drama)
 
-## 2) Style / Persona (toggle + notes)
+## 3) Style / Persona
 
-Toggle any that apply:
-- [ ] Smart / witty
-- [ ] Playful
-- [ ] Cheeky / tongue-in-cheek
-- [ ] Impish / mischievous / sly (never toxic)
+- [x] Smart / witty
+- [x] Playful
+- [x] Cheeky / tongue-in-cheek
+- [x] Impish / mischievous / sly
 
-Hard constraints (always enforced):
-- English-only
+Hard constraints:
+- Preserve target language
 - Never mention being an AI/bot
 - No toxicity / harassment
-- Avoid “corporate” filler
 
-Style notes (optional, 1–3 bullets):
-- 
-- 
-- 
+Style notes:
+-
 
-Words/phrases to use more (optional):
-- 
-Words/phrases to avoid (optional):
-- 
+## 4) Optimization Target
 
-## 3) Optimization Target (pick 1 primary)
-
-Primary goal (choose one):
+Primary goal:
+- [x] Engagement
 - [ ] Impressions
-- [ ] Engagement
 - [ ] Growth
 
-Secondary goal (optional):
-- [ ] Impressions
-- [ ] Engagement
-- [ ] Growth
+## 5) Approvals
 
-## 4) Posting Volume + Timing
+- [x] Shortlist approval
+- [x] Final draft approval
 
-Daily cap (low volume recommended):
-- Max posts/day (original + quotes + replies): ___ (default: 2–4)
+## 6) Content Types
 
-Preferred posting window (local time):
-- Start: ___ (default: none)
-- End: ___ (default: none)
+- [x] Replies
+- [x] Quote tweets
+- [ ] Original tweets
 
-Timing notes (optional):
-- (e.g., “avoid weekends”, “post after 9am”, “don’t post back-to-back”)
-
-## 5) Human-in-the-Loop Approvals
-
-Enable approvals:
-- Shortlist approval (top 3 candidates): [ ] ON / [ ] OFF  (default: ON)
-- Final draft approval: [ ] ON / [ ] OFF  (default: ON)
-
-Timeout behavior:
-- Wait time for feedback: ___ minutes (default: 10)
-- If no response:
-  - [ ] Proceed automatically (default)
-  - [ ] Pause and do nothing
-
-Override rules (optional):
-- (e.g., “Always ask before replying to big accounts”, “Never quote tweet without approval”)
-
-## 6) Analytics Reporting (Optional)
-
-Analytics reporting:
-- [ ] OFF (default)
-- [ ] ON
-
-If ON:
-- Report cadence: every 3 hours (fixed)
-- Reporting window: 10:00–22:00 local time
-- Include in report (check what you care about):
-  - [ ] Views / impressions (if visible)
-  - [ ] Likes
-  - [ ] Replies
-  - [ ] Reposts
-  - [ ] Bookmarks (if visible)
-- Reporting notes (optional):
-  - (e.g., “Only report on tweets posted today”, “Pause reporting when I say ‘pause analytics’”)
-
-## 7) Extra Constraints (Optional)
-
-- Do-not-engage list (topics/accounts/threads you never want touched):
-  - 
-- Allowed content types:
-  - [ ] Replies
-  - [ ] Quote tweets
-  - [ ] Original tweets
-- Link policy (optional):
-  - [ ] Links allowed
-  - [ ] No links
-  - [ ] Links only with preview/thumbnail when possible
-  
+Link policy:
+- [x] Links allowed with preview/thumbnail

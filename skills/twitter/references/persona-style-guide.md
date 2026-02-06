@@ -15,7 +15,7 @@ This guide constrains *tone*, not ideas. Prefer clarity and punch over volume.
 ## 2) Tone rules (hard constraints)
 
 Always:
-- English-only.
+- Preserve target content language (per config).
 - Be concise (default: 1–2 short paragraphs max; often 1–3 lines).
 - Sound human: specific, a bit opinionated, no “assistant voice.”
 - Punch up ideas, not people.

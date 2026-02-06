@@ -123,36 +123,35 @@ Prefer candidates that are strong across all five, even if smaller accounts.
 When saving a candidate, capture:
 - URL
 - Author handle + brief why they matter (expertise / audience fit)
-- Tweet context (what are they saying? what’s the angle?)
+- Tweet context (what are they saying? what's the angle?)
+- Language (per config)
 - Proposed action type: reply / quote / original
-- 1-sentence “value add” you’d contribute
+- 1-sentence "value add" you'd contribute
 - Risk notes (if any)
-- “Engaged already?” marker (must be false)
+- "Engaged already?" marker (must be false)
 
-Aim to collect **5–12 candidates**, then narrow to the top 3.
+Quota and shortlist size: per defaults in `SKILL.md`.
 
 ---
 
-## 6) Rules for NOT exhausting the timeline
+## 6) Mandatory coverage + stopping rules
 
-The goal is to discover enough to act—then stop.
+**Mandatory tab coverage** (visit all 5 before shortlisting):
+- Home → For You
+- Home → Following
+- Explore → For You
+- Explore → Trending
+- Explore → News
 
 Hard rules:
 - Do not scroll indefinitely.
-- Do not engage multiple times per session just because you can.
-- Stop discovery once you have:
-  - at least 5 solid candidates, and
-  - 3 clearly superior finalists.
+- Do not shortlist before visiting all 5 surfaces.
+- Stop discovery once quota and shortlist requirements are met (per `SKILL.md` defaults).
 
 Practical stopping heuristics:
-- If you’ve scrolled ~3–5 “screens” worth in each chosen surface and quality isn’t improving, stop.
-- If candidates start to feel “meh,” stop and either:
-  - switch surface once (e.g., Following → Explore News), or
-  - end the session and wait for a better time window.
-
-Timeboxing (suggested):
-- 10–20 minutes discovery per posting action (more if the niche is quiet)
-- If no good candidates after ~20 minutes: don’t force it—pause.
+- If you've scrolled ~3–5 "screens" worth in each surface and quality isn't improving, stop.
+- If candidates start to feel "meh," stop and report to user.
+- Time cap per defaults, but do not shortlist before coverage requirements are met.
 
 ---
 
@@ -177,7 +176,7 @@ Explore → For You:
 
 ## 8) If discovery quality is low
 
-If you can’t find 3 strong candidates:
+If you can't find enough strong candidates:
 - Do not post just to post.
 - Report back briefly:
   - “Discovery quality low today; here’s what I saw”
