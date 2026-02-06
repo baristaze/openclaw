@@ -2,6 +2,7 @@ node_modules
 **/node_modules/
 .env
 docker-compose.extra.yml
+docker-compose.override.yml
 dist
 pnpm-lock.yaml
 bun.lock
@@ -13,6 +14,7 @@ __pycache__/
 .pnpm-store
 .worktrees/
 .DS_Store
+.deployed/
 **/.DS_Store
 ui/src/ui/__screenshots__/
 ui/playwright-report/
