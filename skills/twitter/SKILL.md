@@ -38,7 +38,7 @@ If the log can't be read, skip engagement and notify the user.
 
 ## Configuration
 
-Collect at start (ask once, reuse). See Config Template appendix at end of this document.
+Collect at start (ask once, reuse). See Config Template Appendix at end of this document.
 
 ---
 
@@ -51,10 +51,11 @@ Collect at start (ask once, reuse). See Config Template appendix at end of this 
 - Status: "Run started. Loading config..."
 
 ### DISCOVERY
-- Browse selected surfaces (per config, default: Home Following + Explore Trending)
+- Browse selected surfaces (per config, see defaults in 'Discovery Surfaces' section in Appendix)
 - 1-2 scrolls per surface is sufficient
 - Shortlist as soon as good candidates are found; do not scroll indefinitely
 - If quality is low after all configured surfaces, report to user
+- Evaluate candidates from the feed view only. Do not click into individual tweets or visit author profiles during discovery. Navigate to the selected tweet only after the user picks from the shortlist.
 
 What to look for:
 - Fresh threads with active replies where you can add a specific point
@@ -195,8 +196,8 @@ Defaults are pre-selected. Adjust as needed.
 - [ ] Japanese (JA)
 
 ### Discovery Surfaces
-- [ ] Home: For You
-- [x] Home: Following
+- [x] Home: For You
+- [ ] Home: Following
 - [ ] Explore: For You
 - [x] Explore: Trending
 - [ ] Explore: News
