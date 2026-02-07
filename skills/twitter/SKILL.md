@@ -14,8 +14,6 @@ Single-run, user-triggered workflow:
 | Parameter | Default | Options |
 |-----------|---------|---------|
 | Languages | EN, TR | ES, DE, FR, RU, AR, ZH, JA |
-| Discovery quota | 30 min, 100 target | — |
-| Discovery time cap | 20 min | — |
 | Shortlist size | 3 | — |
 | Heartbeat interval | 30 sec | — |
 
@@ -62,17 +60,15 @@ Bias: replies > quotes > originals (only originals if clearly superior)
 - Status: "Run started. Loading config..."
 
 ### DISCOVERY
-- Browse all 5 surfaces (mandatory coverage):
-  - Home: For You, Following
-  - Explore: For You, Trending, News
-- Quota: minimum items evaluated per defaults
+- Browse selected surfaces (per config-template.md, default: Home Following + Explore Trending)
+- 1-2 scrolls per surface is sufficient
+- Shortlist as soon as good candidates are found
 - Track candidates with: URL, author, language, topic, fit reason, engaged-before marker
 - Status updates during discovery:
-  - "Browsing Home → For You..."
+  - "Browsing Home → Following..."
   - "Found N candidates so far..."
   - "Switching to Explore → Trending..."
 - Heartbeat: emit "Still working, current step: DISCOVERY" per interval
-- Time cap per defaults, but do not shortlist before coverage requirements met
 
 See: `references/discovery-sources.md`
 
@@ -116,36 +112,31 @@ See: `references/optimization-heuristics.md`, `references/persona-style-guide.md
   - tabs_visited (count)
   - items_evaluated (count)
   - shortlisted_items
-  - retry_count (browser recovery attempts)
-  - resync_count (page state re-syncs)
   - total_duration (seconds)
 - Include link to posted tweet if applicable
 - Status: "Run complete."
 
 ---
 
-## Browser Recovery
+## Browser Snapshots (token budget)
 
-When browser stalls or page fails to load:
-1. Wait 2 seconds, check if page loaded
-2. If not: refresh page
-3. If still stuck: close tab, reopen URL
-4. If still stuck: report failure, ask user to intervene
+Always use these params on every `action=snapshot` call:
+- `interactive=true` — only interactive elements (buttons, links, inputs)
+- `compact=true` — strip layout/decorative nodes
+- `maxChars=10000` — cap DOM output at 10K chars
 
-After any click/navigation:
-- Verify page state changed (not blind waits)
-- Detect new-tab scenarios (e.g., external link opens Bloomberg)
-- If external site: return to X or notify user
+Do NOT set `mode=efficient` (it forces depth=6 which misses Twitter's deep-nested buttons).
+Do NOT set `depth` (leave unlimited so like/reply/retweet controls are visible).
 
-Interaction fallback sequence:
-1. DOM click
-2. Simulated mouse click
-3. Keyboard navigation
-4. Direct URL navigation
-5. Page refresh
+---
 
-Status updates on retries:
-- "Retrying Explore → News click (attempt 2/3, switching to DOM click)"
+## Error Handling
+
+Do not retry failed actions. On any browser or page issue:
+1. Report the problem to the user with a clear description
+2. Wait for user instruction before continuing
+
+This applies to all failures: page loads, clicks, navigation, posting, and any other browser interaction.
 
 ---
 

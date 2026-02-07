@@ -2,12 +2,7 @@
 
 Goal: find high-signal conversations and topics worth engaging **today**, while staying aligned with the user’s interests + style and keeping volume intentionally low.
 
-Discovery surfaces (user-scoped):
-- Home → For You
-- Home → Following
-- Explore → For You
-- Explore → Trending
-- Explore → News
+Discovery surfaces: per config-template.md (default: Home Following + Explore Trending).
 
 Use this document to evaluate what to engage, what to ignore, and when to stop.
 
@@ -130,28 +125,16 @@ When saving a candidate, capture:
 - Risk notes (if any)
 - "Engaged already?" marker (must be false)
 
-Quota and shortlist size: per defaults in `SKILL.md`.
+Shortlist size: per defaults in `SKILL.md`.
 
 ---
 
-## 6) Mandatory coverage + stopping rules
+## 6) Stopping rules
 
-**Mandatory tab coverage** (visit all 5 before shortlisting):
-- Home → For You
-- Home → Following
-- Explore → For You
-- Explore → Trending
-- Explore → News
-
-Hard rules:
+- Browse each configured surface with 1-2 scrolls.
+- Shortlist as soon as good candidates are found.
 - Do not scroll indefinitely.
-- Do not shortlist before visiting all 5 surfaces.
-- Stop discovery once quota and shortlist requirements are met (per `SKILL.md` defaults).
-
-Practical stopping heuristics:
-- If you've scrolled ~3–5 "screens" worth in each surface and quality isn't improving, stop.
-- If candidates start to feel "meh," stop and report to user.
-- Time cap per defaults, but do not shortlist before coverage requirements are met.
+- If quality is low after covering all configured surfaces, report to user.
 
 ---
 

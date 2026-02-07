@@ -15,7 +15,16 @@ Select languages to engage with:
 - [ ] Chinese (ZH)
 - [ ] Japanese (JA)
 
-## 2) Interests
+## 2) Discovery Surfaces
+
+Select which Twitter surfaces to browse:
+- [ ] Home: For You
+- [x] Home: Following
+- [ ] Explore: For You
+- [x] Explore: Trending
+- [ ] Explore: News
+
+## 3) Interests
 
 ### Whitelist (pre-selected defaults)
 - [x] AI / Machine Learning / LLMs
@@ -45,7 +54,7 @@ Accounts to prioritize (@handles):
 - Sensitive categories (always skip):
   - (e.g., health advice, personal drama)
 
-## 3) Style / Persona
+## 4) Style / Persona
 
 - [x] Smart / witty
 - [x] Playful
@@ -60,19 +69,19 @@ Hard constraints:
 Style notes:
 -
 
-## 4) Optimization Target
+## 5) Optimization Target
 
 Primary goal:
 - [x] Engagement
 - [ ] Impressions
 - [ ] Growth
 
-## 5) Approvals
+## 6) Approvals
 
 - [x] Shortlist approval
 - [x] Final draft approval
 
-## 6) Content Types
+## 7) Content Types
 
 - [x] Replies
 - [x] Quote tweets
