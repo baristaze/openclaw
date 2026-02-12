@@ -51,11 +51,12 @@ Collect at start (ask once, reuse). See Config Template Appendix at end of this 
 - Status: "Run started. Loading config..."
 
 ### DISCOVERY
-- Browse selected surfaces (per config, see defaults in 'Discovery Surfaces' section in Appendix)
-- 1-2 scrolls per surface is sufficient
-- Shortlist as soon as good candidates are found; do not scroll indefinitely
-- If quality is low after all configured surfaces, report to user
+- Browse all configured surfaces (see 'Discovery Surfaces' in Appendix). Visit every configured surface before shortlisting.
+- Scroll 3-5 times per surface. If quality improves on later scrolls, continue up to ~8 scrolls max.
+- Aim to evaluate at least 15-20 items across all surfaces before shortlisting.
+- If quality is low after all configured surfaces, report to user.
 - Evaluate candidates from the feed view only. Do not click into individual tweets or visit author profiles during discovery. Navigate to the selected tweet only after the user picks from the shortlist.
+- Discovery typically takes 3-15 minutes. Do not rush.
 
 What to look for:
 - Fresh threads with active replies where you can add a specific point
@@ -67,12 +68,32 @@ What to skip:
 - Low-context memes, engagement bait ("like if you agree")
 - Ambiguous/sensitive topics (when in doubt, skip)
 
+#### Scoring (quick 1-5 per dimension)
+- **Relevance**: fits interest whitelist, not blacklisted
+- **Recency**: conversation still active, not stale
+- **Signal**: substantive, specific, insightful (not generic)
+- **Persona fit**: can respond in style without forcing it
+- **Low risk**: not sensitive, not drama, not ambiguous
+
+Prefer candidates strong across all five. Smaller accounts with high signal beat large accounts with low signal.
+
+#### Surface tips
+- **Home Following**: highest signal, lowest chaos. Best for accounts the user already cares about.
+- **Home For You**: higher variance. Be stricter with scoring. Good for discovering adjacent topics and new voices.
+- **Explore Trending/News**: treat as "idea source." Higher risk of sensitive/fast-moving stories; avoid if blacklist overlaps.
+
+#### Tweet URL extraction
+Each tweet in the feed has a timestamp element that links to the full tweet URL. Extract the actual URL from this link element. Do not construct URLs manually.
+Valid format: `https://x.com/{handle}/status/{numeric_id}`
+If a URL doesn't match this pattern, re-extract from the DOM or skip the candidate.
+
 Track candidates with: URL, author, language, topic, fit reason, engaged-before marker (must be false).
 Status updates: "Browsing Home -> Following...", "Found N candidates...", "Switching to Explore -> Trending..."
 Heartbeat: "Still working, current step: DISCOVERY" per interval.
 
 ### SHORTLIST
 - Select candidates per shortlist size default
+- Before presenting, verify every candidate URL matches `https://x.com/{handle}/status/{numeric_id}`. If a URL is malformed or uncertain, navigate to verify it or drop the candidate.
 - Each candidate: source link, language, type (reply/quote/original), 1-sentence angle, risk flag, reason
 - Present to user: "Shortlist ready, pick one (A / B / C, or 'none' to skip)"
 - Wait for user choice (no auto-proceed)
@@ -158,11 +179,13 @@ Do NOT set `depth` (leave unlimited so like/reply/retweet controls are visible).
 
 ## Error Handling
 
-Do not retry failed actions. On any browser or page issue:
-1. Report the problem to the user with a clear description
-2. Wait for user instruction before continuing
+On browser or page issues:
+1. Wait 2 seconds, check if page loaded
+2. If not: refresh the page once
+3. If still stuck after refresh: report the problem to the user and wait for instruction
 
-This applies to all failures: page loads, clicks, navigation, posting, and any other browser interaction.
+After any click/navigation: verify page state changed (not blind waits).
+If an external site opens (e.g., Bloomberg link): navigate back to X.
 
 ---
 
@@ -197,10 +220,10 @@ Defaults are pre-selected. Adjust as needed.
 
 ### Discovery Surfaces
 - [x] Home: For You
-- [ ] Home: Following
+- [x] Home: Following
 - [ ] Explore: For You
 - [x] Explore: Trending
-- [ ] Explore: News
+- [x] Explore: News
 
 ### Interests
 Whitelist (pre-selected):
